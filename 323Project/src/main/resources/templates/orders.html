@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layouts/defaultTemplate">
+	<head>
+        <meta charset="UTF-8">
+        <title>Orders</title>
+    </head>
+	<body>
+		<div layout:fragment="content">
+			<!-- Delete Form Starts Here -->
+			<form th:action="@{/create}" method="get" style="text-align: center;">
+    			<button type="submit" class="btn btn-dark">Add Order</button>
+			</form>
+			<br>
+			<!--Form End Here -->
+			<!-- ALERTS -->
+			<div th:if="${result}" class="alert alert-light" role="alert">
+			    <span th:text="${result}">Default result text</span>
+			</div>
+			
+			<div th:if="${error}" class="alert alert-danger" role="alert">
+			    <span th:text="${error}">Default error text</span>
+			</div>
+				
+			<br>
+			<table style="width: 50%">
+				<thead>
+					<tr>
+						<th style="text-align: center;">Order Number</th> 
+						<th style="text-align: center;">Product Name</th>
+						<th style="text-align: center;">Price</th>
+						<th style="text-align: center;">Quantity</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:if="${orders.empty}">
+						<td style="text-align: center;" colspan="4">No Orders Available</td>
+					</tr>
+					<tr th:each="order:${orders}">
+						<td style="text-align: center;"><h5 th:text="${order.orderNo}">0000001</h5></td>
+						<td style="text-align: center;"><h5 th:text="${order.productName}">Product 1</h5></td>
+						<td style="text-align: center;"><h5 th:text="${order.price}">1.00</h5></td>
+						<td style="text-align: center;"><h5 th:text="${order.quantity}">1</h5>
+						<td style="text-align: left;"><a class="btn" role="button" th:href="@{/update(orderId=${order.id})}">Update</a></td>
+            			<td style="text-align: left;"><a class="btn" role="button" th:href="@{/delete(orderId=${order.id})}">Delete</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</body>
+</html>

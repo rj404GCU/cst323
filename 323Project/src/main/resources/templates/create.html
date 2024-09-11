@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layouts/defaultTemplate">
+    <head>
+        <meta charset="utf-8">
+        <title>Update</title>
+        
+    </head>
+    <body>
+       <div layout:fragment="content">
+            <form action="#" th:action="@{/doCreate}" th:object="${orderModel}" method="post">
+                <table> 
+               		<!-- tr>
+                        <td>Order Id:</td>
+                        <td><input type="number" th:field="*{id}"></td>
+                        <td><h5 style="color: red;" th:if="${#fields.hasErrors('id')}" th:errors="*{id}">Order Number Error</h5></td>
+                    </tr-->
+                    <tr>
+                        <td>Order Number:</td>
+                        <td><input type="text" th:field="*{orderNo}"></td>
+                        <td><h5 style="color: red;" th:if="${#fields.hasErrors('orderNo')}" th:errors="*{orderNo}">Order Number Error</h5></td>
+                    </tr>
+                    <tr>
+                        <td>Product Name:</td>
+                        <td><input type="text" th:field="*{productName}"></td>
+                        <td><h5 style="color: red;" th:if="${#fields.hasErrors('productName')}" th:errors="*{productName}">Product Name Error</h5></td>
+                    </tr>
+                                   		<tr>
+                        <td>Order Price:</td>
+                        <td><input type="number" th:field="*{price}"></td>
+                        <td><h5 style="color: red;" th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Order Number Error</h5></td>
+                    </tr>
+                                   		<tr>
+                        <td>Order Quantity:</td>
+                        <td><input type="number" th:field="*{quantity}"></td>
+                        <td><h5 style="color: red;" th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}">Order Number Error</h5></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3"><input type="submit" value="Update"/></td>
+                    </tr >
+                </table>
+                 <div th:if="${#fields.hasErrors('*')}">List of Errors</div>
+                 <div th:each="err: ${#fields.errors('*')}">
+                     <span style="color: red;" th:text="${err}" class="fieldError"></span>
+                 </div>
+            </form>
+        </div>
+    </body>
+</html>
